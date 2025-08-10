@@ -8,6 +8,8 @@ services:
         condition: service_healthy
     volumes:
       - ./translations:/translations
+    networks:
+      - remnawave-network
 
   db:
     image: postgres:17
@@ -40,6 +42,12 @@ services:
 #      NGROK_AUTHTOKEN: TOKEN
 #    ports:
 #      - 4040:4040
+
+networks:
+  remnawave-network:
+    name: remnawave-network
+    driver: bridge
+    external: true
 
 volumes:
   remnawave-telegram-shop-db-data:
